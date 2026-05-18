@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: learnlog-backend
+    env: node
+    plan: free
+    runtime: node-18
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: ACCESS_TOKEN_SECRET
+        sync: false
+      - key: ACCESS_TOKEN_EXPIRY
+        value: 15m
+      - key: REFRESH_TOKEN_SECRET
+        sync: false
+      - key: REFRESH_TOKEN_EXPIRY
+        value: 7d
+      - key: PASSWORD_RESET_SECRET
+        sync: false
+      - key: PASSWORD_RESET_EXPIRY
+        value: 15m
+      - key: APP_NAME
+        value: LearnLog
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_EMAIL
+        sync: false
+      - key: SUPPORT_EMAIL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+    disk:
+      name: uploads
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 1
