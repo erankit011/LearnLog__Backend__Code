@@ -25,7 +25,7 @@ const generateAuthTokens = async (user, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: env.isProduction,
-      sameSite: env.isProduction ? 'strict' : 'lax',
+      sameSite: env.isProduction ? 'none' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
       path: '/',
     };
@@ -101,14 +101,14 @@ const clearAuthCookies = (res) => {
   res.clearCookie('accessToken', {
     httpOnly: true,
     secure: env.isProduction,
-    sameSite: env.isProduction ? 'strict' : 'lax',
+    sameSite: env.isProduction ? 'none' : 'lax',
     path: '/',
   });
 
   res.clearCookie('refreshToken', {
     httpOnly: true,
     secure: env.isProduction,
-    sameSite: env.isProduction ? 'strict' : 'lax',
+    sameSite: env.isProduction ? 'none' : 'lax',
     path: '/',
   });
 };
